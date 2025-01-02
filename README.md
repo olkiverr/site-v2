@@ -78,7 +78,7 @@ Ce projet, intitulé **MangaMuse**, est un site web PHP centré sur la gestion d
 4. **Accéder au site** :
    Ouvrez votre navigateur et rendez-vous sur :
    ```
-   http://localhost/<nom-du-projet>
+   http://localhost/site-v2
    ```
 
 ## Prérequis
@@ -93,8 +93,4 @@ Ce projet, intitulé **MangaMuse**, est un site web PHP centré sur la gestion d
 - Ajout d'un système de rôles pour gérer les droits d'accès.
 
 ## Auteur
-- **Nom** : [Votre nom]
-- **Contact** : [Votre email]
-
-## Licence
-Ce projet est sous licence [type de licence, par exemple MIT].
+- **Nom** : Zielinski Olivier
