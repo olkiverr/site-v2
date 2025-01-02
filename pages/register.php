@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
             <button type="submit">Register</button>
-            <p>Already have an account? <a href="/site-v2-crud/pages/login.php">Login</a></p>
+            <p>Already have an account? <a href="login.php">Login</a></p>
         </form>
     </main>
     <?php include '../partials/footer.php'; ?>

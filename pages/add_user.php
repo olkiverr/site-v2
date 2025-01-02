@@ -6,7 +6,7 @@
     <title>Add User</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/admin-panel.css">
+    <link rel="stylesheet" href="../css/add-user.css">
     <link rel="icon" href="../img/MangaMuse_White-Book.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,7 @@
                 <input type="checkbox" id="is_admin" name="is_admin">
                 <button type="submit">Add User</button>
             </form>
+            <a href="admin_panel.php?tab=users" class="return-button">Return to Admin Panel</a>
         </section>
     </main>
     <?php include '../partials/footer.php'; ?>

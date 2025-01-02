@@ -6,11 +6,11 @@
     <title>Edit User</title>
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/admin-panel.css">
+    <link rel="stylesheet" href="../css/edit-user.css">
     <link rel="icon" href="../img/MangaMuse_White-Book.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700&display=swap" rel="stylesheet">
 </head>
 <body>
     <?php include '../partials/header.php'; ?>
@@ -36,6 +36,7 @@
                 <input type="checkbox" id="is_admin" name="is_admin" <?php echo $user['is_admin'] ? 'checked' : ''; ?>>
                 <button type="submit">Update User</button>
             </form>
+            <a href="admin_panel.php?tab=users" class="return-button">Return to Admin Panel</a>
         </section>
     </main>
     <?php include '../partials/footer.php'; ?>

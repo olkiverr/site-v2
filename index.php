@@ -1,3 +1,7 @@
+<?php
+session_start();
+$is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +20,11 @@
     <?php include 'partials/header.php'; ?> <!-- Include header partial -->
     <main>
         <div class="trending-slider-container">
+        <?php if ($is_admin): ?>
+            <p>Trending 🔥<span><img src="img/cog.png" alt="cog" class="admin-cog"></span></p>
+        <?php else: ?>
             <p>Trending 🔥</p>
+        <?php endif; ?>
             <div class="trending-slider">
                 <button class="slider-button left">&#9664;</button>
                 <div class="trending-item">
@@ -55,11 +63,19 @@
                     <img src="anime_img/naruto_shippuden.webp" alt="Naruto Shippuden">
                     <p>Naruto Shippuden</p>
                 </div>
+                <div class="trending-item">
+                    <img src="anime_img/DBZ.jpg" alt="Dragon Ball Z">
+                    <p>Dragon Ball Z</p>
+                </div>
                 <button class="slider-button right">&#9654;</button>
             </div>
         </div>
         <div class="upcoming-slider-container">
+        <?php if ($is_admin): ?>
+            <p>Upcoming ⌛<span><img src="img/cog.png" alt="cog" class="admin-cog"></span></p>
+        <?php else: ?>
             <p>Upcoming ⌛</p>
+        <?php endif; ?>
             <div class="upcoming-slider">
                 <button class="slider-button left">&#9664;</button>
                 <div class="trending-item">
@@ -97,6 +113,10 @@
                 <div class="trending-item">
                     <img src="anime_img/naruto_shippuden.webp" alt="Naruto Shippuden">
                     <p>Naruto Shippuden</p>
+                </div>
+                <div class="trending-item">
+                    <img src="anime_img/DBZ.jpg" alt="Dragon Ball Z">
+                    <p>Dragon Ball Z</p>
                 </div>
                 <button class="slider-button right">&#9654;</button>
             </div>

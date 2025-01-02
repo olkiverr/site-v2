@@ -135,6 +135,62 @@
     color: #fff;
 }
 
+.dashboard-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.small-box {
+    flex: 0 0 200px;
+}
+
+.info-box {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.info-box h4 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.info-box p {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.info-box ul {
+    list-style: none;
+    padding: 0;
+    color: #fff;
+}
+
+.info-box ul li {
+    margin-bottom: 10px;
+}
+
+.info-box canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+.large-chart {
+    flex: 1 1 100%;
+    max-width: 800px;
+    margin: 40px auto 0;
+}
+
+.small-chart {
+    flex: 1 1 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 @media (max-width: 768px) {
     .admin-panel .tabs {
         flex-direction: column;

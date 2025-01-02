@@ -3,7 +3,7 @@ document.getElementById('register-form').addEventListener('submit', function(eve
 
     const formData = new FormData(this);
 
-    fetch('/site-v2-crud/pages/register.php', {
+    fetch('/site-v2/pages/register.php', {
         method: 'POST',
         body: formData
     })
@@ -12,7 +12,7 @@ document.getElementById('register-form').addEventListener('submit', function(eve
         if (data.status === 'success') {
             showSnackbar(data.message, 'success');
             setTimeout(() => {
-                window.location.href = '/site-v2-crud/index.php';
+                window.location.href = '/site-v2/index.php';
             }, 1500);
         } else {
             showSnackbar(data.message, 'error');

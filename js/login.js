@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const formData = new FormData(this);
-        fetch('/site-v2-crud/php/auth.php', {
+        fetch('/site-v2/php/auth.php', {
             method: 'POST',
             body: formData
         })
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'success') {
                 showSnackbar(data.message, 'success');
                 setTimeout(() => {
-                    window.location.href = '/site-v2-crud/index.php';
+                    window.location.href = '/site-v2/index.php';
                 }, 1500);
             } else {
                 showSnackbar(data.message, 'error');

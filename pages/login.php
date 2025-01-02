@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user'] = $username;
             $_SESSION['is_admin'] = $row['is_admin'];
             error_log("User is admin: " . $_SESSION['is_admin']); // Debugging line
-            header("Location: /site-v2-crud/index.php");
+            header("Location: /site-v2/index.php");
         } else {
             echo "Invalid password.";
         }
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
-            <p>Don't have an account? <a href="/site-v2-crud/pages/register.php">Create one</a></p> <!-- Add create account link -->
+            <p>Don't have an account? <a href="register.php">Create one</a></p> <!-- Add create account link -->
         </form>
     </main>
     <?php include '../partials/footer.php'; ?>
