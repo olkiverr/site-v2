@@ -136,6 +136,67 @@ main {
     cursor: pointer;
 }
 
+.edit-menu {
+    display: none;
+    background-color: #333;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.edit-menu form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-menu label {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.edit-menu input[type="text"] {
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #444;
+    color: #fff;
+}
+
+.edit-menu input[type="file"] {
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #444;
+    color: #fff;
+}
+
+.edit-menu button {
+    padding: 0.5em;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 0.5em;
+}
+
+.edit-menu button:hover {
+    background-color: #45a049;
+}
+
+.trending-item.selected,
+.upcoming-item.selected {
+    border: 2px solid #4CAF50;
+}
+
 .upcoming-slider-container {
     padding: 1em;
     color: #fff;

@@ -16,12 +16,25 @@ $is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="<?php echo $is_admin ? 'admin' : ''; ?>">
     <?php include 'partials/header.php'; ?> <!-- Include header partial -->
     <main>
         <div class="trending-slider-container">
         <?php if ($is_admin): ?>
-            <p>Trending 🔥<span><img src="img/cog.png" alt="cog" class="admin-cog"></span></p>
+            <p>Trending 🔥<span><img src="img/cog.png" alt="cog" class="admin-cog" onclick="toggleEditMenu('trending')"></span></p>
+            <div id="trending-edit-menu" class="edit-menu">
+                <form id="trending-edit-form" enctype="multipart/form-data">
+                    <label for="trending-image">Image URL:</label>
+                    <input type="text" id="trending-image" name="image">
+                    <label for="trending-file">Upload Image:</label>
+                    <input type="file" id="trending-file" name="file">
+                    <label for="trending-title">Title:</label>
+                    <input type="text" id="trending-title" name="title">
+                    <button type="button" onclick="addTrendingItem()">Add</button>
+                    <button type="button" onclick="updateTrendingItem()">Update</button>
+                    <button type="button" onclick="deleteTrendingItem()">Delete</button>
+                </form>
+            </div>
         <?php else: ?>
             <p>Trending 🔥</p>
         <?php endif; ?>
@@ -72,7 +85,20 @@ $is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
         </div>
         <div class="upcoming-slider-container">
         <?php if ($is_admin): ?>
-            <p>Upcoming ⌛<span><img src="img/cog.png" alt="cog" class="admin-cog"></span></p>
+            <p>Upcoming ⌛<span><img src="img/cog.png" alt="cog" class="admin-cog" onclick="toggleEditMenu('upcoming')"></span></p>
+            <div id="upcoming-edit-menu" class="edit-menu">
+                <form id="upcoming-edit-form" enctype="multipart/form-data">
+                    <label for="upcoming-image">Image URL:</label>
+                    <input type="text" id="upcoming-image" name="image">
+                    <label for="upcoming-file">Upload Image:</label>
+                    <input type="file" id="upcoming-file" name="file">
+                    <label for="upcoming-title">Title:</label>
+                    <input type="text" id="upcoming-title" name="title">
+                    <button type="button" onclick="addUpcomingItem()">Add</button>
+                    <button type="button" onclick="updateUpcomingItem()">Update</button>
+                    <button type="button" onclick="deleteUpcomingItem()">Delete</button>
+                </form>
+            </div>
         <?php else: ?>
             <p>Upcoming ⌛</p>
         <?php endif; ?>
