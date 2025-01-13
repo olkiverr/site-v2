@@ -91,7 +91,7 @@ $conn->close();
             <div class="upcoming-slider">
                 <button class="slider-button left">&#9664;</button>
                 <?php foreach ($upcoming_images as $image): ?>
-                    <div class="trending-item" data-id="<?php echo $image['id']; ?>">
+                    <div class="upcoming-item" data-id="<?php echo $image['id']; ?>">
                         <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['name']; ?>">
                         <p><?php echo $image['name']; ?></p>
                     </div>

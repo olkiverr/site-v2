@@ -48,7 +48,7 @@ if (isAdmin) {
     });
 }
 
-function toggleEditMenu(sliderType) {
+function toggleEditMenu(sliderType, cogElement=null) {
     const editMenu = document.getElementById(`${sliderType}-edit-menu`);
     editMenu.style.display = editMenu.style.display === 'block' ? 'none' : 'block';
 }
@@ -85,16 +85,17 @@ function addImage(category) {
 }
 
 function deleteImage(category) {
-    let selectedImage, imageId;
+    let selectedImage;
 
     if (category === 'trending') {
         selectedImage = document.querySelector('.trending-item.selected');
-        imageId = selectedImage.getAttribute('data-id');
         
     } else if (category === 'upcoming') {
         selectedImage = document.querySelector('.upcoming-item.selected');
-        imageId = selectedImage.getAttribute('data-id');
     }
+
+    const imageId = selectedImage.getAttribute('data-id');
+    
     $.ajax({
         type: 'POST',
         url: 'php/delete_image.php',
