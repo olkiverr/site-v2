@@ -36,7 +36,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <li><a class="home-nav" href="/site-v2/index.php" style="color: #fff; text-decoration: none;">Home</a></li>
                 <li><a class="about-nav" href="#" style="color: #fff; text-decoration: none;">About</a></li>
                 <li><a class="services-nav" href="#" style="color: #fff; text-decoration: none;">Services</a></li>
-                <li><a class="contact-nav" href="#" style="color: #fff; text-decoration: none;">Contact</a></li>
+                <li><a class="contact-nav" href="/site-v2/pages/contact.php" style="color: #fff; text-decoration: none;">Contact</a></li>
             </ul>
         </div>
     </nav>

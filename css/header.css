@@ -140,8 +140,7 @@ body {
 }
 
 .about-nav,
-.services-nav,
-.contact-nav {
+.services-nav {
     cursor: not-allowed;
 }
 
