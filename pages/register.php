@@ -50,6 +50,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            <div class="terms-container">
+                <label for="terms">I accept the&nbsp;<a href="tacs.php" target="_blank">Terms & Services</a>.</label>
+                <input type="checkbox" name="terms" id="terms" required>
+            </div>
             <button type="submit">Register</button>
             <p>Already have an account? <a href="login.php">Login</a></p>
         </form>

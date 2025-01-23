@@ -68,6 +68,33 @@ form p a:hover {
     color: #155ab6;
 }
 
+/* Terms & Services */
+#register-form label[for="terms"] {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    font-size: 14px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+#register-form input[name="terms"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    accent-color: #007BFF; /* Couleur de la case à cocher */
+    border-radius: 10px;
+}
+
+#register-form label[for="terms"] a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+#register-form label[for="terms"] a:hover {
+    text-decoration: underline;
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
     form {
