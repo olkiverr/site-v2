@@ -24,7 +24,7 @@ if (isset($_SESSION['user'])) {
 <body>
     <?php include '../partials/header.php' ?>
     <main>
-        <form action="">
+        <form action="../php/send_mail.php">
             <?php if (!$is_connected): ?>
             <label for="">Name:</label>
             <input type="text" name="" id="">

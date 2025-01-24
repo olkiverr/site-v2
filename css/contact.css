@@ -25,7 +25,14 @@ form input, textarea, button {
     border-radius: 10px;
     width: 90%;
     height: 40px;
-    font-size: 1.4em;
+    color: aliceblue;
+    font-size: 1.2em;
+    background-color: #707070;
+    border: #1e1d1d 3px solid;
+}
+
+form input:focus, textarea:focus {
+    border: #1e1d1d 3px solid;
 }
 
 form button[type="submit"] {
