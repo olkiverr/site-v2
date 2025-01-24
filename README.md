@@ -1,3 +1,5 @@
+ajoute google api client php
+php mailer
 
 # README pour le projet MangaMuse
 
