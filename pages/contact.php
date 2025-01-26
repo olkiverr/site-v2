@@ -24,15 +24,12 @@ if (isset($_SESSION['user'])) {
 <body>
     <?php include '../partials/header.php' ?>
     <main>
-        <form action="../php/send_mail.php">
+        <form action="../php/send_mail.php" method="POST">
             <?php if (!$is_connected): ?>
-            <label for="">Name:</label>
-            <input type="text" name="" id="">
-            <label for="">Email:</label>
-            <input type="email" name="" id="">
+            <input placeholder="Name" type="text" name="name" id="">
+            <input placeholder="Email" type="email" name="email" id="">
             <?php endif ?>
-            <label for="">Message:</label>
-            <textarea name="" id=""></textarea>
+            <textarea placeholder="Type your message here... " name="message" id=""></textarea>
             <button type="submit">Send</button>
         </form>
     </main>
