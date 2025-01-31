@@ -1,6 +1,30 @@
 <?php
 session_start();
 $is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
+
+include 'php/db.php';
+
+$trending_images = [];
+$upcoming_images = [];
+
+// Adjust column names as per your database schema
+$sql = "SELECT id, url, name FROM images WHERE category = 'trending'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $trending_images[] = $row;
+    }
+}
+
+$sql = "SELECT id, url, name FROM images WHERE category = 'upcoming'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $upcoming_images[] = $row;
+    }
+}
+
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,13 +50,11 @@ $is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
                 <form id="trending-edit-form" enctype="multipart/form-data">
                     <label for="trending-image">Image URL:</label>
                     <input type="text" id="trending-image" name="image">
-                    <label for="trending-file">Upload Image:</label>
-                    <input type="file" id="trending-file" name="file">
                     <label for="trending-title">Title:</label>
                     <input type="text" id="trending-title" name="title">
-                    <button type="button" onclick="addTrendingItem()">Add</button>
-                    <button type="button" onclick="updateTrendingItem()">Update</button>
-                    <button type="button" onclick="deleteTrendingItem()">Delete</button>
+                    <button type="button" onclick="addImage('trending')">Add</button>
+                    <button type="button" onclick="deleteImage('trending')">Delete</button>
+                    <button type="button" onclick="location.reload()">Update</button>
                 </form>
             </div>
         <?php else: ?>
@@ -40,46 +62,12 @@ $is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
         <?php endif; ?>
             <div class="trending-slider">
                 <button class="slider-button left">&#9664;</button>
-                <div class="trending-item">
-                    <img src="anime_img/DanDaDan.webp" alt="DanDaDan">
-                    <p>DanDaDan</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/Detective_Conan.webp" alt="Detective Conan">
-                    <p>Detective Conan</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/sword_art_online.jpg" alt="Swort Art Online">
-                    <p>Sword Art Online</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/Blue_Lock_vs_U-20.webp" alt="Blue Lock Season 2">
-                    <p>Blue Lock Season 2</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/Tower_of_God_season_2.webp" alt="Tower of God Season 2">
-                    <p>Tower of God Season 2</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/Yoru_wa_Neko_to_Issho.webp" alt="Yoru wa Neko to Issho">
-                    <p>Yoru wa Neko to Issho</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/nom_trop_long.webp" alt="Cheat Skill Level Up">
-                    <p>Cheat Skill Level Up</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/SNK.webp" alt="Attack on Titan">
-                    <p>Attack on Titan</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/naruto_shippuden.webp" alt="Naruto Shippuden">
-                    <p>Naruto Shippuden</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/DBZ.jpg" alt="Dragon Ball Z">
-                    <p>Dragon Ball Z</p>
-                </div>
+                <?php foreach ($trending_images as $image): ?>
+                    <div class="trending-item" data-id="<?php echo $image['id']; ?>">
+                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['name']; ?>">
+                        <p><?php echo $image['name']; ?></p>
+                    </div>
+                <?php endforeach; ?>
                 <button class="slider-button right">&#9654;</button>
             </div>
         </div>
@@ -90,13 +78,11 @@ $is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
                 <form id="upcoming-edit-form" enctype="multipart/form-data">
                     <label for="upcoming-image">Image URL:</label>
                     <input type="text" id="upcoming-image" name="image">
-                    <label for="upcoming-file">Upload Image:</label>
-                    <input type="file" id="upcoming-file" name="file">
                     <label for="upcoming-title">Title:</label>
                     <input type="text" id="upcoming-title" name="title">
-                    <button type="button" onclick="addUpcomingItem()">Add</button>
-                    <button type="button" onclick="updateUpcomingItem()">Update</button>
-                    <button type="button" onclick="deleteUpcomingItem()">Delete</button>
+                    <button type="button" onclick="addImage('upcoming')">Add</button>
+                    <button type="button" onclick="deleteImage('upcoming')">Delete</button>
+                    <button type="button" onclick="location.reload()">Update</button>
                 </form>
             </div>
         <?php else: ?>
@@ -104,51 +90,18 @@ $is_admin = isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
         <?php endif; ?>
             <div class="upcoming-slider">
                 <button class="slider-button left">&#9664;</button>
-                <div class="trending-item">
-                    <img src="anime_img/DanDaDan.webp" alt="DanDaDan">
-                    <p>DanDaDan</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/Detective_Conan.webp" alt="Detective Conan">
-                    <p>Detective Conan</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/sword_art_online.jpg" alt="Swort Art Online">
-                    <p>Sword Art Online</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/Blue_Lock_vs_U-20.webp" alt="Blue Lock Season 2">
-                    <p>Blue Lock Season 2</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/Tower_of_God_season_2.webp" alt="Tower of God Season 2">
-                    <p>Tower of God Season 2</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/Yoru_wa_Neko_to_Issho.webp" alt="Yoru wa Neko to Issho">
-                    <p>Yoru wa Neko to Issho</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/nom_trop_long.webp" alt="Cheat Skill Level Up">
-                    <p>Cheat Skill Level Up</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/SNK.webp" alt="Attack on Titan">
-                    <p>Attack on Titan</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/naruto_shippuden.webp" alt="Naruto Shippuden">
-                    <p>Naruto Shippuden</p>
-                </div>
-                <div class="trending-item">
-                    <img src="anime_img/DBZ.jpg" alt="Dragon Ball Z">
-                    <p>Dragon Ball Z</p>
-                </div>
+                <?php foreach ($upcoming_images as $image): ?>
+                    <div class="upcoming-item" data-id="<?php echo $image['id']; ?>">
+                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['name']; ?>">
+                        <p><?php echo $image['name']; ?></p>
+                    </div>
+                <?php endforeach; ?>
                 <button class="slider-button right">&#9654;</button>
             </div>
         </div>
     </main>
     <?php include 'partials/footer.php'; ?> <!-- Include footer partial -->
     <script src="js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

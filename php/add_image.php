@@ -6,13 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $functionName = isset($_POST['functionname']) ? $_POST['functionname'] : '';
 
     // Call the appropriate function based on the function name
-    if ($functionName === 'deleteImage') {
+    if ($functionName === 'addImage') {
         // Get the other parameters
         $category = isset($_POST['category']) ? $_POST['category'] : '';
-        $imageId = isset($_POST['imageId']) ? $_POST['imageId'] : '';
+        $url = isset($_POST['url']) ? $_POST['url'] : '';
+        $title = isset($_POST['title']) ? $_POST['title'] : '';
 
         // Call the function to handle the data
-        $response = deleteImage($category, $imageId);
+        $response = addImage($category, $url, $title);
     } else {
         // If the function name is not recognized
         echo json_encode(['error' => 'Function not found']);
@@ -23,14 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Define your PHP function
-function deleteImage($category, $imageId) {
+function addImage($category, $url, $title) {
     include 'db.php';
 
-    $sql = "DELETE FROM images WHERE id='$imageId'";
+    $sql = "INSERT INTO images (url, name, category) VALUES ('$url', '$title', '$category')";
     if ($conn->query($sql) === TRUE) {
         header("Location: ../index.php");
     };
-
+    
     $conn->close();
 }
 ?>
