@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const formData = new FormData(this);
-        fetch('/site-v2/php/auth.php', {
+        fetch('/4TTJ/Zielinski%20Olivier/Site/site-v2/php/auth.php', {
             method: 'POST',
             body: formData
         })
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'success') {
                 showSnackbar(data.message, 'success');
                 setTimeout(() => {
-                    window.location.href = '/site-v2/index.php';
+                    window.location.href = '/4TTJ/Zielinski%20Olivier/Site/site-v2/index.php';
                 }, 1500);
             } else {
                 showSnackbar(data.message, 'error');

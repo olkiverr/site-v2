@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
-    header('Location: /site-v2/index.php');
+    header('Location: /4TTJ/Zielinski%20Olivier/Site/site-v2/index.php');
     exit();
 }
 ?>
@@ -27,6 +27,7 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
         <div class="tabs">
             <div class="tab active-tab" data-tab="dashboard">Dashboard</div>
             <div class="tab" data-tab="users">Users</div>
+            <div class="tab" data-tab="pages">Pages</div>
             <div class="tab" data-tab="settings">Settings</div>
         </div>
         <div class="tab-content active-tab" id="dashboard">
@@ -106,6 +107,30 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
             }
             ?>
         </div>
+        <div class="tab-content" id="pages">
+            <h3>Pages</h3>
+            <?php
+            include '../php/db.php';
+            $sql = "SELECT * FROM pages";
+            $result = $conn->query($sql);
+            ?>
+
+            <div class="tabs-pages">
+                <?php 
+                // Boucle pour récupérer toutes les lignes
+                while ($row = $result->fetch_assoc()): ?>
+                    <?php
+                    // Vérification si 'title' est un tableau, mais ici 'title' est une chaîne, donc cela ne s'applique pas
+                    if (is_array($row['title'])): 
+                        foreach($row['title'] as $title): ?>
+                            <div class="tab-page" data-tab="<?php echo $row['id']; ?>"><?php echo htmlspecialchars($title); ?></div>
+                        <?php endforeach; 
+                    else: ?>
+                        <div class="tab-page" data-tab="<?php echo $row['id']; ?>"><?php echo htmlspecialchars($row['title']); ?></div>
+                    <?php endif; ?>
+                <?php endwhile; ?>
+            </div>
+        </div>
         <div class="tab-content" id="settings">
             <h3>Site Settings</h3>
             <form>
@@ -133,7 +158,20 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
                 });
             });
         });
-    </script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-page');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const id = tab.getAttribute('data-tab');
+                    console.log(id);
+                    window.location.href = "edit_page.php?id=" + id;
+
+                });
+            });
+        });
+xx    </script>
     <script src="../js/admin-panel.js"></script>
 </body>
 </html>
